@@ -9,6 +9,9 @@ dotenv.config()
 
 const app = express()
 
+// Configure Express to parse incoming JSON data
+app.use(express.json())
+
 // Port is now available to the Node.js runtime
 // as if it were an environment variable
 const port = process.env.SERVER_PORT
