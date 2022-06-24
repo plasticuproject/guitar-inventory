@@ -11,7 +11,7 @@ export const register = (app: express.Application) => {
     user: process.env.PGUSER || 'postgres'
   }
 
-  const pgp = pgPromise
+  const pgp = pgPromise()
   const db = pgp(config)
 
   app.get('/api/guitars/all', oidc.ensureAuthenticated(), async (req: any, res) => {
@@ -63,7 +63,7 @@ export const register = (app: express.Application) => {
                                  WHERE   user_id = $1
                                  AND     id = $2`,
       [userId, req.params.id],
-      (r: any) => r.rowCount),
+      (r: any) => r.rowCount)
       return res.json({ id })
     } catch (err) {
       console.error(err)
